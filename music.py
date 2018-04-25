@@ -15,9 +15,10 @@ from tkinter import messagebox
 database = MusicDatabase("dbname='Library' user='postgres' password='postgres1' host='localhost' port='5432'")
 
 class MusicGUI(object):
-    """ This class creates the GUI and defines calls the button behavior """
+    """ This class creates the GUI and defines calls the behavior of the music section """
 
     def __init__(self, window, parent):
+        """ This method initializes the GUI """
         self.window = window
         self.parent = parent
         self.window.wm_title("Music section")
@@ -122,6 +123,7 @@ class MusicGUI(object):
         
     # Define all the functions:
     def get_selected_row(self, event):
+        """ This method inserts text into the relevant entry boxes """
         index = self.view_box.curselection()
         self.selected_tuple = self.view_box.get(index)
         self.title_box.delete(0,END)
@@ -134,11 +136,13 @@ class MusicGUI(object):
         self.producer_box.insert(END, self.selected_tuple[4])
 
     def view(self):
+        """ This method displays all the data in the database """
         self.view_box.delete(0,END)
         for row in database.view():
             self.view_box.insert(END,row)
 
     def insert(self):
+        """ This method sends the text variables to the inserting method in bakendMusic and displays a confirmation dialog when successfully inserted something"""
         database.insert(self.title_box.get(), \
                         self.artist_box.get(), \
                         self.year_box.get(), \
@@ -151,6 +155,11 @@ class MusicGUI(object):
         messagebox.showinfo("Saved Successfully", "The book was saved successfully")
 
     def delete(self):
+        """ 
+        this method sends the selected index to the delete method in backendMusic.
+        It also allows you to cancel the deleting operation
+        Lastly it displays a confirmation dialog if the deleting operation was successful
+        """
         answer = messagebox.askokcancel("Warning","You are about to delete the chosen book. \
                                 Press 'OK' if you want to delete it or Cancel to end.")
         if answer:
@@ -165,6 +174,10 @@ class MusicGUI(object):
             pass
 
     def update(self):
+        """ 
+        This method sends the index of the selected item and the string variables from the entry boxes to the 
+        update method in backendMusic and displays a confirmation when an update was completed
+        """
         self.view_box.delete(0,END)
         database.update(self.selected_tuple[0], \
                         self.title_value.get(), \
@@ -178,6 +191,10 @@ class MusicGUI(object):
         messagebox.showinfo("Update Successfully", "The book was updated successfully")
 
     def search(self):
+        """
+        This method allows sends whatever is entered in the entry boxes to the search method in backendMusic 
+        and displays an error dialog if nothing was found
+        """
         self.view_box.delete(0,END)
         for row in database.search(str(self.title_value.get()), \
                                     str(self.artist_value.get()), \

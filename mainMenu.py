@@ -15,16 +15,19 @@ from books import BookGUI
 from login import Login
 
 def books():
+    """ This function opens the books section """
     main_window.withdraw()
     window = Toplevel()
     books_gui = BookGUI(window, main_window)
 
 def videos():
+    """ This function opens the videos section """
     main_window.withdraw()
     window = Toplevel()
     video_gui = VideoGUI(window, main_window)
 
 def music():
+    """ This function opens the music section """
     main_window.withdraw()
     window = Toplevel()
     music_gui = MusicGUI(window, main_window)
@@ -36,7 +39,7 @@ main_window.withdraw()
 
 main_window.title("Library Menu")
 
-header = Label(main_window, text="My Library")
+header = Label(main_window, text="Øyvind's Library")
 header.configure(width=50, font=("Helvetica", 18, "bold"))
 header.grid(row=1,column=0, columnspan=3)
 
@@ -73,7 +76,5 @@ spacing5.grid(row=15,column=1)
 
 spacing6 = Label(main_window, text=" ")
 spacing6.grid(row=17, column=1, rowspan=3)
-
-
 
 main_window.mainloop()

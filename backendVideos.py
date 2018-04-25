@@ -12,6 +12,7 @@ import psycopg2
 
 class VideoDatabase:
     def __init__(self, db):
+        """ This method initializes the database server """
         self.db = db
         self.connection = psycopg2.connect(db)
         self.cursor = self.connection.cursor()
@@ -19,30 +20,40 @@ class VideoDatabase:
         self.connection.commit()
 
     def view(self):
+        """ This method returns a list of all the books in the databse """
         self.cursor.execute("SELECT * FROM videos")
         rows = self.cursor.fetchall()
         return rows
 
     def get_index(self):
+        """ This method makes sure returns the next index in the database """
         self.cursor.execute("SELECT * FROM videos")
         rows = self.cursor.fetchall()
         return (len(rows) + 1)
 
     def insert(self,title, producer, year, director):
+        """ This method inserts the string variables received from videos into the database """
         index = self.get_index()
         self.cursor.execute("INSERT INTO videos VALUES (%s, %s, %s, %s, %s)",\
                             (index, title.title(), producer.title(), year, director.title()))
         self.connection.commit()
 
     def delete(self, id):
+        """ This method allows you to delete an item in the database given the selected index """
         self.cursor.execute("DELETE FROM videos WHERE id=%s", (id,))
         self.connection.commit()
 
     def update(self, id, title, producer, year, director):
+        """ This method allows you to update an item in the database given the parameters above """
         self.cursor.execute("UPDATE videos SET title=%s, producer=%s, year=%s, director=%s WHERE id=%s", (title.title(), producer.title(), year, director, id))
         self.connection.commit()
 
     def search(self, title="", producer="", year="", director=""):
+        """
+        This method allows you to search fro anythin in the database.
+        It allows you to search fro a single character or single name etc.
+        As long as you search for something - even a space - it will return whatever contains that
+        """
         if str(title) is not "":
             titles = []
             con = psycopg2.connect(self.db)
@@ -120,4 +131,5 @@ class VideoDatabase:
             return rows
 
     def __del__(self):
+        """ This method makes sure you disconnect from the database server """
         self.connection.close()

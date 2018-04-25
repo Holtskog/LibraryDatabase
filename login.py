@@ -9,9 +9,12 @@
 '''
 
 from tkinter import *
+from tkinter import messagebox
 
 class Login(Toplevel):
+    """ This class creates a login window this appear whenever the main program starts """
     def __init__(self, window):
+        """ This method initializes the GUI """
         self.window = window
         Toplevel.__init__(self, window)
         self.title("Login")
@@ -49,6 +52,7 @@ class Login(Toplevel):
 
 
     def clicked(self):
+        """ This method checks if the password was correct when the submit button was clicked """
         username = self.userbox.get()
         password = self.passbox.get()
 
@@ -57,14 +61,16 @@ class Login(Toplevel):
             self.destroy()
             self.window.deiconify()
         else:
-            pass
+            messagebox.showerror("Credential error", "The username or password you entered was incorrect")
     
     def clear_widget(self, event):
+        """ This method clears the entry boxes when you click inside it """
         if self.userbox == self.focus_get() and self.userbox.get() == 'Enter Username':
             self.userbox.delete(0,END)
         elif self.passbox == self.focus_get() and self.passbox.get() == 'Password':
             self.passbox.delete(0,END)
 
     def repopulate_defaults(self, event):
+        """ This method repopulates the entry boxes if you enter another widget and did not enter any text """
         if self.passbox != self.focus_get() and self.passbox.get() == '':
             self.passbox.insert(0, 'Password')
