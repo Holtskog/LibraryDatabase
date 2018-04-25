@@ -1,3 +1,11 @@
+'''
+    File name: music.py
+    Author: Øyvind Holtskog
+    Date created: 3/20/2018
+    Date last modified: 4/25/2018
+    Python Version: 3.6.4
+'''
+
 from tkinter import *
 from backendMusic import MusicDatabase
 from tkinter import messagebox
