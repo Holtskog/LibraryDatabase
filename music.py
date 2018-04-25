@@ -2,7 +2,7 @@ from tkinter import *
 from backendMusic import MusicDatabase
 from tkinter import messagebox
 
-database = MusicDatabase("dbname='Library' user='postgres' password='postgres1993' host='localhost' port='5432'")
+database = VideoDatabase("dbname='Library' user='postgres' password='postgres1' host='localhost' port='5432'")
 
 class MusicGUI(object):
     """ This class creates the GUI and defines calls the button behavior """

@@ -2,7 +2,7 @@ from tkinter import *
 from backendBooks import BookDatabase
 from tkinter import messagebox
 
-database = BookDatabase("dbname='Library' user='postgres' password='postgres1993' host='localhost' port='5432'")
+database = VideoDatabase("dbname='Library' user='postgres' password='postgres1' host='localhost' port='5432'")
 
 class BookGUI(object):
     """ 

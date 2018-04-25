@@ -2,7 +2,7 @@ from tkinter import *
 from backendVideos import VideoDatabase
 from tkinter import messagebox
 
-database = VideoDatabase("dbname='Library' user='postgres' password='postgres1993' host='localhost' port='5432'")
+database = VideoDatabase("dbname='Library' user='postgres' password='postgres1' host='localhost' port='5432'")
 
 class VideoGUI(object):
     """ This class creates the GUI and defines calls the button behavior """
