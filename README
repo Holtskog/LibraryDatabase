@@ -11,4 +11,4 @@ If you want to make an executable of this, I have done this by running the follo
 
 	pyinstaller --onefile --windowed --name Library --log-level ERROR mainMenu.py
 
-I made this project from the udemy course "The Python Mega Course: Build 10 Real World Applications" taught by Ardit Sulce. The idea there was to make it a simple book store app that used sqlite3(a local database) and was lacking some of the functions used here.
+I made this project when following the udemy course "The Python Mega Course: Build 10 Real World Applications" taught by Ardit Sulce. The idea there was to make it a simple book store app that used sqlite3(a local database) and was lacking some of the functions used here.
