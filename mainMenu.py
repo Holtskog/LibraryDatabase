@@ -12,29 +12,31 @@ from tkinter import *
 from videos import VideoGUI
 from music import MusicGUI
 from books import BookGUI
-
-main_window = Tk()
-main_window.title("Library Menu")
+from login import Login
 
 def books():
     main_window.withdraw()
     window = Toplevel()
     books_gui = BookGUI(window, main_window)
-    #window.mainloop()
 
 def videos():
     main_window.withdraw()
     window = Toplevel()
     video_gui = VideoGUI(window, main_window)
-    #window.mainloop()
 
 def music():
     main_window.withdraw()
     window = Toplevel()
     music_gui = MusicGUI(window, main_window)
-    #window.mainloop()
 
-header = Label(main_window, text="Øyvind's Library")
+main_window = Tk()
+
+Login(main_window)
+main_window.withdraw()
+
+main_window.title("Library Menu")
+
+header = Label(main_window, text="My Library")
 header.configure(width=50, font=("Helvetica", 18, "bold"))
 header.grid(row=1,column=0, columnspan=3)
 
@@ -75,11 +77,3 @@ spacing6.grid(row=17, column=1, rowspan=3)
 
 
 main_window.mainloop()
-
-"""
-
-add all the GUI classes here ...
-
-instead of window = Tk() write e.g. music_window = Toplevel()
-
-"""
